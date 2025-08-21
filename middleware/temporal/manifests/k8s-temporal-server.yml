@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: temporal-server
+  labels:
+    app: temporal-server
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: temporal-server
+      labels:
+        app: temporal-server
+    spec:
+      containers:
+        - name: temporal-server
+          image: localhost:5001/temporalio/auto-setup:1.22.1.0
+          ports:
+            - containerPort: 7233
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TEMPORAL_BROADCAST_ADDRESS
+              value: "0.0.0.0"
+            - name: BIND_ON_IP
+              value: "0.0.0.0"
+            - name: SKIP_CREATE_DB
+              value: "true"
+            - name: DB
+              value: postgresql
+            - name: DBNAME
+              value: temporal
+            - name: DB_PORT
+              value: '5432'
+            - name: POSTGRES_USER
+              value: 'postgres'
+            - name: POSTGRES_PWD
+              value: 'postgres'
+            - name: POSTGRES_SEEDS
+              value: postgres-service.default
+            - name: PUBLIC_FRONTEND_ADDRESS
+              value: "temporal-frontend:7233"
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: temporal-server

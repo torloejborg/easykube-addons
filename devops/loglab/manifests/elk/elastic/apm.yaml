@@ -1,0 +1,16 @@
+apiVersion: apm.k8s.elastic.co/v1
+kind: ApmServer
+metadata:
+  name: apm-quickstart
+  namespace: default  # or your specific namespace
+spec:
+  version: 8.17.0  # Match your Elasticsearch version
+  count: 1
+  elasticsearchRef:
+    name: quickstart  # Replace with your Elasticsearch name
+  kibanaRef:
+    name: quickstart         # Optional but recommended
+  http:
+    tls:
+      selfSignedCertificate:
+        disabled: false

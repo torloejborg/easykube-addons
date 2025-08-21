@@ -1,0 +1,47 @@
+apiVersion: logstash.k8s.elastic.co/v1alpha1
+kind: Logstash
+metadata:
+  name: quickstart
+spec:
+  count: 1
+  elasticsearchRefs:
+    - name: quickstart
+      clusterName: qs
+  version: 8.17.0
+  pipelines:
+    - pipeline.id: main
+      config.string: |
+        input {
+          http { port => 8080 }
+          beats { port => 5044 }
+        }
+        output {
+          elasticsearch {
+            hosts => [ "https://quickstart-es-http.loglab.svc.cluster.local:9200" ]
+            user => "elastic"
+            password => "18RC76nV5MIEc8Iyn3QAA429"
+            manage_template => false
+            index => "logs-%{+YYYY.MM.dd}"
+            ssl => true
+            ssl_certificate_verification => false
+          }
+        }
+  services:
+    - name: http
+      service:
+        spec:
+          type: ClusterIP
+          ports:
+            - port: 8080
+              name: "http"
+              protocol: TCP
+              targetPort: 8080
+    - name: beats
+      service:
+        spec:
+          type: ClusterIP
+          ports:
+            - port: 5044
+              name: "filebeat"
+              protocol: TCP
+              targetPort: 5044

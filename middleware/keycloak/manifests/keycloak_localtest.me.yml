@@ -1,0 +1,24 @@
+# this service specifies a fixed IP for keycloak listening on port 80.
+# We are sort-of making a hack, where the ip is configured in core-dns to
+# resolve to keycloak.localhost, this has the fortunate effect of having
+# applications (using keycloak) being able to run inside the cluster, and clients interacting
+# with the applications being forwarded to the internal keycloak from outside - thus enabling
+# local openid-connect flows.
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak-ext
+  labels:
+    app: keycloak-server
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: http
+      name: http-ext
+    - port: 443
+      protocol: TCP
+      targetPort: https
+      name: https-ext
+  selector:
+    app: keycloak-server

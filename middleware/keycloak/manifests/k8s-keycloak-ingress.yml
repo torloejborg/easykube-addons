@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+#    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "30"
+    nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "30"
+  labels:
+    app: keycloak-server
+  name:  keycloak-server-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: keycloak.localtest.me
+      http:
+        paths:
+          - backend:
+              service:
+                name: keycloak-service
+                port:
+                  number: 8080
+            path: /
+            pathType: Prefix

@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    common.k8s.elastic.co/type: logstash
+    logstash.k8s.elastic.co/name: quickstart
+  name: logstash-ext
+  namespace: loglab
+spec:
+  ports:
+  - name: http
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    common.k8s.elastic.co/type: logstash
+    logstash.k8s.elastic.co/name: quickstart
+  sessionAffinity: None
+  type: ClusterIP

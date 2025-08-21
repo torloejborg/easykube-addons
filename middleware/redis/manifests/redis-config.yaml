@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  redis.conf: |
+    maxmemory 128M
+    stop-writes-on-bgsave-error no
+kind: ConfigMap
+metadata:
+  name: redis-config

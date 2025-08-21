@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  # This special service name will make the service available with the same dns name internally as externally
+  # git.default.localtest.me will resolve to the gitea ip internally this is a cluster ip
+  # externally it is 127.0.0.1 which works well with the ingress controller
+  name: git-ext
+  labels:
+    app: gitea
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: http
+  selector:
+    app: gitea

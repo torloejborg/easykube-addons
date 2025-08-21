@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+  namespace: loglab
+  labels:
+    common.k8s.elastic.co/type: logstash
+    app: logstash
+  name:  logstash-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: logstash.localtest.me
+      http:
+        paths:
+          - backend:
+              service:
+                name: quickstart-ls-http
+                port:
+                  number: 8080
+            path: /
+            pathType: Prefix

@@ -1,0 +1,13 @@
+###
+POST https://logstash.localtest.me
+Content-Type: application/json
+
+[
+  {
+    "logline": "info-1"
+  },
+  {
+    "logline": "info-2"
+  }
+]
+

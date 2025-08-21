@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: temporal-ui
+  labels:
+    app: temporal-ui
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: temporal-ui
+      labels:
+        app: temporal-ui
+    spec:
+      containers:
+        - name: temporal-ui
+          image: localhost:5001/temporalio/ui:2.19.0
+          ports:
+            - containerPort: 8080
+          env:
+           - name: TEMPORAL_ADDRESS
+             value: "temporal-frontend:7233"
+           - name: TEMPORAL_PUBLIC_PATH
+             value: "/temporal-ui"
+           - name: TEMPORAL_AUTH_PROVIDER_URL
+             value: http://dex.localtest.me
+           - name: TEMPORAL_AUTH_CLIENT_ID
+             value: "sikved"
+           - name: TEMPORAL_AUTH_ENABLED
+             value: "false"
+           - name: TEMPORAL_AUTH_CALLBACK_URL
+             value: http://temporal.localtest.me/auth/sso_callback
+           - name: TEMPORAL_AUTH_CLIENT_SECRET
+             value: ZXhhbXBsZS1hcHAtc2VjcmV0
+           - name: TEMPORAL_AUTH_SCOPES
+             value: openid,email
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: temporal-ui

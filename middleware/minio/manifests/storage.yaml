@@ -1,0 +1,26 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-minio-data
+spec:
+  storageClassName: openebs-hostpath
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 2G
+  hostPath:
+    path: /var/openebs/local/minio
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-minio-data
+spec:
+  storageClassName: openebs-hostpath
+  volumeName: pv-minio-data
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2G

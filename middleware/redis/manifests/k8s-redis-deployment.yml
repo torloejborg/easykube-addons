@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-server
+  labels:
+    app: redis-server
+    name: redis-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-server
+  template:
+    metadata:
+      labels:
+        app: redis-server
+        name: redis-server
+    spec:
+      containers:
+      - name: redis-server
+        image: localhost:5001/redis:7.2.1
+        command:
+          - "redis-server"
+          - "/usr/local/etc/redis/redis.conf"
+          - "--requirepass"
+          - "$(REDIS_PASSWORD)"
+        ports:
+          - containerPort: 6379
+            hostPort: 6379
+            protocol: TCP
+        env:
+          - name: REDIS_PASSWORD
+            value: "password"
+        volumeMounts:
+          - name: redis-vol
+            mountPath: /usr/local/etc/redis/redis.conf
+            subPath: redis.conf
+      volumes:
+        - name: redis-vol
+          configMap:
+            name: redis-config

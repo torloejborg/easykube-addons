@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio
+  labels:
+    app: minio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minio
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      containers:
+        - name: minio
+          image: localhost:5001/minio:latest
+          ports:
+            - containerPort: 9000
+            - containerPort: 9001
+          imagePullPolicy: Always
+          args: [ "server", "/data" ]
+          command: [ "/bin/sh", "-c", "minio server /data --console-address :9001" ]
+          env:
+            - name: MINIO_BROWSER_REDIRECT_URL
+              value: "https://s3-ui.localtest.me"
+            - name: MINIO_ROOT_USER
+              value: "admin"
+            - name: MINIO_ROOT_PASSWORD
+              value: "adminadmin"
+            - name: MINIO_DEFAULT_BUCKETS
+              value: "images"
+            - name: MINIO_BROWSER_REDIRECT
+              value: "false"
+
+          volumeMounts:
+            - name: minio-storage
+              mountPath: "/data"
+      volumes:
+        - name: minio-storage
+          persistentVolumeClaim:
+            claimName: pvc-minio-data

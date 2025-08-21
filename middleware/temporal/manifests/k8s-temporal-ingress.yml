@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+#    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  labels:
+    app: temporal-ui
+  name:  temporal-ui-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: temporal.localtest.me
+      http:
+        paths:
+          - backend:
+              service:
+                name: temporal-ui-service
+                port:
+                  number: 8080
+            path: /
+            pathType: Prefix

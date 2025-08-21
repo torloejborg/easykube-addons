@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - manifests/k8s-temporal-service.yml
+  - manifests/k8s-temporal-ui.yml
+  - manifests/k8s-temporal-server.yml
+  - manifests/k8s-temporal-ingress.yml

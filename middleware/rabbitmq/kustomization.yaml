@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - manifests/k8s-deployment.yml
+  - manifests/k8s-rabbitmq-plugins.yml
+  - manifests/k8s-service.yml
+  - manifests/k8s-rabbitmq-ingress.yml

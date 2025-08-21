@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  labels:
+    app: pgadmin
+  name:  pgadmin-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: pgadmin.localtest.me
+      http:
+        paths:
+          - backend:
+              service:
+                name: pgadmin
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
