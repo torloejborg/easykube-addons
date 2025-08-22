@@ -1,5 +1,5 @@
 # Easykube addons
-This is the companion repository for [easykube](\https://github.com/torloejborg/easykube) for addons. 
+This is the companion repository for [easykube](https://github.com/torloejborg/easykube) for addons. 
 This repository mainly serves as an example of what a shared developer platform can look like.
 
 Addons here are compatible with easykube 
@@ -44,4 +44,4 @@ In your editor, when you start to type
 
 `easykube.`, `utils.` or `postgres.` Your ide should give you documentation and autocomplete 
 
-If the included script functions are not fulfilling your use-case, the scripting runtime is easy to extend, look for the *_ek* invocations, this "_ek" object is exposed in Go, consult the easykube sources, and you will find it's simple to add new functionality.  
+If the included script functions are not fulfilling your use-case, the scripting runtime is easy to extend, look for the *_ek* invocations, the "_ek" object is exposed in Go, consult the easykube sources [here](https://github.com/torloejborg/easykube/blob/main/pkg/js/easykube.go), and you will find it's simple to add new functionality.   
