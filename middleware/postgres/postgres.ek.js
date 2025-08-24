@@ -14,8 +14,10 @@ let configuration = {
 let namespace = "default"
 let deployment = "postgres"
 
-const images = {"postgres:17.5": "localhost:5001/postgres:17.5"}
+const images = {"ghcr.io/tensorchord/vchord-postgres:pg17-v0.3.0": "localhost:5001/postgres:x"}
 easykube
     .preload(images)
     .kustomize()
     .waitForDeployment(deployment,namespace)
+
+

@@ -35,7 +35,7 @@ class Postgres {
             const argArray = [
                 ["-c", `drop database if exists ${database} with (FORCE)`, "-U", "postgres"],
                 ["-c", `drop user if exists ${database}`, "-U", "postgres"],
-                ["-c", `create user ${database} password '${database}'`, "-U", "postgres"],
+                ["-c", `create user ${database} with superuser password '${database}'`, "-U", "postgres"],
                 ["-c", `create database ${database} with owner '${database}'`, "-U", "postgres"],
             ];
 
