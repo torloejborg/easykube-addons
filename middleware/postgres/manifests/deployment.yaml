@@ -31,6 +31,17 @@ spec:
           volumeMounts:
             - mountPath: /pg-data
               name: data-volume
+          readinessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - |
+                  pg_isready -U "postgres" -d "postgres"
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 5
+            failureThreshold: 6
       volumes:
         - name: data-volume
           persistentVolumeClaim:

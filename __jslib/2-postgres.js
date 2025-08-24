@@ -53,22 +53,6 @@ class Postgres {
     }
 
     /**
-     * Restores a database dump taken by datastash. You MUST have your artifactory token bootstrapped into the
-     * cluster (see easykube create --help). Restoration depends on an available datastash instance ("ek add dashtash", if
-     * not applied via dependency management)
-     * @param {string} respositoryUrl path to your maven repository
-     * @param {string} groupId maven group
-     * @param {string} artifactId maven artifact
-     * @param {string} version version
-     * @param  {function():void} orElse Execute this lambda function if dump cannot be restored or fails
-     * @returns {Postgres}
-     */
-    restoreFromRepository(respositoryUrl, groupId, artifactId, version, orElse = null) {
-        orElse();
-        return this;
-    }
-
-    /**
      * Applies a local sql script to a target database
      * @param {string} localSource Filename of your local SQL script, filename must be relative to the addon *.ek.js file
      * @param {string} targetDatabase The database in which to apply the SQL script
@@ -100,26 +84,8 @@ class Postgres {
      * @param {string} target the target database (must exist beforehand)
      * @returns {Postgres}
      */
-    runGitScript(repo,path,target) {
+    runGitScript(repo, path, target) {
         return this;
-    }
-
-    /**
-     * Check if postgres is ready for work. Even-though the deployment is marked as ready, the container
-     * might still be busy creating database structure on disk.
-     *
-     * Should be replaced by an init-container in the postgres deployment. This is the lazy example, which
-     * basically does the same as an init-container.
-     */
-    waitForReady() {
-        for (let i = 0; i <= 10; i++) {
-            // This *could* be an init container, but for the example value, demonstrate how we could do it from easykube
-            easykube.runCommand(this.deployment, this.namespace, "sleep", ["1"]);
-            let ready = easykube.runCommand(this.deployment, this.namespace, "pg_isready", ["-h", "localhost", "-U", "postgres"]);
-            if (ready.includes("accepting connections")) {
-                return
-            }
-        }
     }
 }
 

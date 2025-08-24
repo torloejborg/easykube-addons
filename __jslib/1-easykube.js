@@ -144,10 +144,19 @@ class Easykube {
     /**
      * Gets a value from the passed kv easykube commandline argument (easykube add fooaddon --kv foo=bar, bing=baz)
      * @param {string} key in the map
-     * @return {string} value or null if key does not exist
+     * @return {string} value or undefined if key does not exist
      */
     kv(key) {
         return _ek.keyValue(key);
+    }
+
+    /**
+     * Fetch the value of an environment variable
+     * @param {string} key
+     * @return {string} value of env-var, undefined if non-existent
+     */
+    env(key) {
+        return _ek.env(key)
     }
 }
 

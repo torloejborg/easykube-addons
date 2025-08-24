@@ -19,5 +19,3 @@ easykube
     .preload(images)
     .kustomize()
     .waitForDeployment(deployment,namespace)
-
-postgres.waitForReady()
