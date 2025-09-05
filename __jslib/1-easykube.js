@@ -21,12 +21,13 @@ class Easykube {
 
     /**
      * Renders a Helm chart to .out, remember to apply the result
-     * @param chart relative path to the chart directory
-     * @param values the values file to use
-     * @param destination output file for rendered template
+     * @param {string} chart relative path to the chart directory
+     * @param {string} values the values file to uses
+     * @param {string} destination rendered chart goes into this file
+     * @param {string} namespace set or override namespace, if not specified, "default" is used
      */
-    helmTemplate(chart,values,destination) {
-        _ek.helmTemplate(chart,values,destination);
+    helmTemplate(chart,values,destination,namespace="default") {
+        _ek.helmTemplate(chart,values,destination,namespace);
         return this;
     }
 
