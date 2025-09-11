@@ -14,10 +14,10 @@ let configuration = {
     ]
 }
 
-const images = {
-        "registry.k8s.io/ingress-nginx/controller:v1.12.1": "localhost:5001/ingress-nginx/controller:v1.12.1",
-        "registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.4.4": "localhost:5001/ingress-nginx/kube-webhook-certgen:v1.4.4"
-}
+const images = new Map([
+        ["registry.k8s.io/ingress-nginx/controller:v1.12.1", "localhost:5001/ingress-nginx/controller:v1.12.1"],
+        ["registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.4.4", "localhost:5001/ingress-nginx/kube-webhook-certgen:v1.4.4"]
+])
 
 easykube
     .preload(images)

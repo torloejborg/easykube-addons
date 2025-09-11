@@ -22,12 +22,12 @@ class Easykube {
     /**
      * Renders a Helm chart to .out, remember to apply the result
      * @param {string} chart relative path to the chart directory
-     * @param {string} values the values file to uses
-     * @param {string} destination rendered chart goes into this file
-     * @param {string} namespace set or override namespace, if not specified, "default" is used
+     * @param {string} values the values file to use
+     * @param {string} destination output file for rendered template
+     * @param {string} namespace sets namespace in templated output
      */
-    helmTemplate(chart,values,destination,namespace="default") {
-        _ek.helmTemplate(chart,values,destination,namespace);
+    helmTemplate(chart, values, destination, namespace = 'default') {
+        _ek.helmTemplate(chart, values, destination, namespace);
         return this;
     }
 
@@ -116,8 +116,8 @@ class Easykube {
      * @param {string} name what to call the secret
      * @param {{[key:string]: string}} data A map, All key and values are strings
      */
-    createSecret(namespace,name,data) {
-        _ek.createSecret(namespace,name,data)
+    createSecret(namespace, name, data) {
+        _ek.createSecret(namespace, name, data)
     }
 
     /**
@@ -125,8 +125,8 @@ class Easykube {
      * @param namespace
      * @param name
      */
-    getSecret(namespace,name) {
-        return _ek.getSecret(namespace,name)
+    getSecret(namespace, name) {
+        return _ek.getSecret(namespace, name)
     }
 
     /**
@@ -137,8 +137,8 @@ class Easykube {
      * @param {string} namespace where to apply the secret
      * @param {string} manifest which output to process, by default, it's the output from kustomize (.out.yaml)
      */
-    processExternalSecrets(secretMap,namespace,manifest = '.out.yaml') {
-        _ek.processExternalSecrets(secretMap,namespace,manifest);
+    processExternalSecrets(secretMap, namespace, manifest = '.out.yaml') {
+        _ek.processExternalSecrets(secretMap, namespace, manifest);
         return this;
     }
 

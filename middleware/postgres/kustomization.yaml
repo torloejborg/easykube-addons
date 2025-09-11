@@ -4,5 +4,6 @@ kind: Kustomization
 resources:
   - manifests/postgres-data-storage.yml
   - manifests/deployment.yaml
-  - manifests/service.yaml
+  - manifests/service-nodeport.yaml
+  - manifests/service-clusterip.yaml
 

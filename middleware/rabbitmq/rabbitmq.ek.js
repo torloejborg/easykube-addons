@@ -3,6 +3,11 @@ let configuration = {
     "dependsOn" : ["ingress"]
 }
 
-easykube.preload({"docker.io/bitnami/rabbitmq:4.0.5" : "localhost:5001/bitnami/rabbitmq:4.0.5"})
+const images = new Map([
+    ["docker.io/bitnami/rabbitmq:4.0.5", "localhost:5001/bitnami/rabbitmq:4.0.5"]
+])
+
+easykube
+    .preload(images)
     .kustomize()
     .waitForDeployment("rabbitmq", "default")
