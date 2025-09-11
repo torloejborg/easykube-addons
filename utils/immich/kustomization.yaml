@@ -3,8 +3,8 @@ kind: Kustomization
 
 resources:
   - k8s/config/immich-configmap.yaml
-  - k8s/storage/immich-library-pv.yaml
-  - k8s/storage/immich-library-pvc.yaml
+  - k8s/storage/immich-pv.yaml
+  - k8s/storage/immich-pvc.yaml
   - k8s/deployment/immich-ml-deployment.yaml
   - k8s/deployment/immich-server-deployment.yaml
   - k8s/service/immich-db-service.yaml

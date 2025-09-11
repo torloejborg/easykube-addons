@@ -78,7 +78,13 @@ spec:
             - name: library
               mountPath: /usr/src/app/upload
               subPath: library
+            - name: library-ext
+              mountPath: /images-ext
+              subPath: library-ext
       volumes:
         - name: library
           persistentVolumeClaim:
             claimName: immich-library-pvc
+        - name: library-ext
+          persistentVolumeClaim:
+            claimName: immich-library-pvc-ext

@@ -1,5 +1,5 @@
 let configuration = {
-    "description": "Advanced opensource RDBMS",
+    "description": "Advanced Open Source RDBMS (tensorchord) variant",
     "extraPorts": [{
             "nodePort": 32000,
             "hostPort": 5432,
@@ -14,7 +14,11 @@ let configuration = {
 let namespace = "default"
 let deployment = "postgres"
 
-const images = {"ghcr.io/tensorchord/vchord-postgres:pg17-v0.3.0": "localhost:5001/postgres:x"}
+// This is a special postgres server which comes with a machine learning extension - used by the immich addon
+const images= new Map([
+    [ "ghcr.io/tensorchord/vchord-postgres:pg17-v0.3.0", "localhost:5001/postgres:x"]
+])
+
 easykube
     .preload(images)
     .kustomize()

@@ -1,0 +1,34 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: immich-library-pv
+  namespace: immich
+  labels:
+    app: immich
+
+spec:
+  capacity:
+    storage: 100Gi  # Adjust the storage size as needed
+  storageClassName: standard
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /storage/immich-data
+
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: immich-library-pv-ext
+  namespace: immich
+  labels:
+    app: immich
+
+spec:
+  capacity:
+    storage: 100Gi  # Adjust the storage size as needed
+  storageClassName: standard
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /storage/ext-pictures

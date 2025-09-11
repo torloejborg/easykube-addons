@@ -6,12 +6,13 @@ let configuration = {
     ]
 }
 
-postgres
-    .create("keycloak",[],true)
+const images = new Map([
+    ["keycloak/keycloak:22.0.5" , "localhost:5001/keycloak/keycloak:22.0.5"]
+])
+
+postgres.create("keycloak",[],false)
 
 easykube
-    .preload({"keycloak/keycloak:22.0.5" : "localhost:5001/keycloak/keycloak:22.0.5"})
+    .preload(images)
     .kustomize()
     .waitForDeployment("keycloak-server","default")
-
-

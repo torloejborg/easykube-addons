@@ -1,5 +1,5 @@
 let configuration = {
-    "description": "An opensource workflow / orchestration engine",
+    "description": "An opensource workflow engine",
     "dependsOn" : [ "postgres", "ingress" ],
     "extraPorts" : [
         {
@@ -15,10 +15,14 @@ let namespace = "default"
 
 postgres.create("temporal")
 
+const images = new Map([
+    ["temporalio/auto-setup:1.22.1.0", "localhost:5001/temporalio/auto-setup:1.22.1.0"],
+    ["temporalio/ui:2.19.0", "localhost:5001/temporalio/ui:2.19.0"]
+])
+
+
 easykube
-    .preload({
-    "temporalio/auto-setup:1.22.1.0": "localhost:5001/temporalio/auto-setup:1.22.1.0",
-    "temporalio/ui:2.19.0": "localhost:5001/temporalio/ui:2.19.0"})
+    .preload(images)
     .kustomize()
     .waitForDeployment(deployment, namespace)
 
