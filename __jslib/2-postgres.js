@@ -4,7 +4,7 @@
  */
 
 /**
- * JS Functions for interacting with the Postgres addon (requires postgres, restoreFromRepository(...) requires datastash)
+ * JS Functions for interacting with the Postgres addon (requires postgres)
  */
 class Postgres {
 
@@ -29,7 +29,7 @@ class Postgres {
 
         const exists = easykube.runCommand(this.deployment, this.namespace, cmd, args);
 
-        if (exists.trimEnd() === "1" && force === false) {
+        if (exists != null && exists.trimEnd() === "1" && force === false) {
             console.warn(`Database ${database} already exists, will not drop-create (unless forced by script)`);
         } else {
             const argArray = [
