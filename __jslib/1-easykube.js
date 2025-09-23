@@ -4,6 +4,13 @@
 class Easykube {
 
     /**
+     * Defines semver constraint for the easykube go-binary, patch versions are free to roll.
+     * The go binary will extract this, and compare it to its own version, if there is a version
+     * mismatch, the status command will complain.
+     */
+    EASYKUBE_BINARY_COMPAT="~1.1";
+
+    /**
      * Creates a new Easykube JavaScript handler. This class is for your IDE's enjoyment.
      * It wraps exported Go functions to provide type hints and documentation.
      */
