@@ -166,6 +166,44 @@ class Easykube {
     env(key) {
         return _ek.env(key)
     }
+
+
+    /**
+     * Represents a HTTP response object.
+     * @typedef {Object} HttpResponse
+     * @property {string} body - The response body as a string.
+     * @property {number} statusCode - The HTTP status code of the response.
+     */
+
+    /**
+     *
+     * @param {string} url endpoint for request
+     * @param {string} method the method, POST, GET, etc.
+     * @param {string} header headers for the request
+     * @param {Object} body arbitrary json structure or text
+     * @returns {HttpResponse}
+     */
+    http(url,method,header,body) {
+        return  _ek.http(url,method,header,body);
+    }
+
+    /**
+     * Represents a result of exec.
+     * @typedef {Object} ExecResult
+     * @property {string} stdout standard out of the OS command
+     * @property {string} stderr standard error of the OS command
+     * @property {bool} isfailed did the command execute successfully?
+     */
+
+    /**
+     * Executes an arbitrary OS command, this calls in to go's os.Exec
+     * @param {string} command the command
+     * @param {string[]} args arguments for the command
+     * @returns {ExecResult} the result
+     */
+    exec(command, args) {
+        return _ek.exec(command, args);
+    }
 }
 
 const easykube = new Easykube();
