@@ -169,7 +169,7 @@ class Easykube {
 
 
     /**
-     * Represents a HTTP response object.
+     * Represents an HTTP response object.
      * @typedef {Object} HttpResponse
      * @property {string} body - The response body as a string.
      * @property {number} statusCode - The HTTP status code of the response.
@@ -188,11 +188,12 @@ class Easykube {
     }
 
     /**
-     * Represents a result of exec.
+     * Represents a result of exec, this is created and exposed from go
      * @typedef {Object} ExecResult
-     * @property {string} stdout standard out of the OS command
-     * @property {string} stderr standard error of the OS command
-     * @property {bool} isfailed did the command execute successfully?
+     * @property {string} out combined output of stdout and stderr
+     * @property {bool} success did the command execute successfully?
+     * @property {(cb: (output: string) => any) => string} onSuccess
+     * @property {(cb: (output: string) => any) => string} onFail
      */
 
     /**
