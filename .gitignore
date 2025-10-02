@@ -3,3 +3,4 @@
 *.idea
 charts
 .helm
+utils/xyz-sandbox
