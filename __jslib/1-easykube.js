@@ -8,7 +8,7 @@ class Easykube {
      * The go binary will extract this, and compare it to its own version, if there is a version
      * mismatch, the status command will complain.
      */
-    EASYKUBE_BINARY_COMPAT="~1.1";
+    EASYKUBE_BINARY_COMPAT="~1.2";
 
     /**
      * Creates a new Easykube JavaScript handler. This class is for your IDE's enjoyment.
@@ -78,7 +78,7 @@ class Easykube {
         return _ek.execInContainer(deployment, namespace, - Namespace of container
      * @param {string} command - The command to run, example "ls" or "/usr/local/bin/whatever"
      * @param {string[]} args - Arguments to the command, example ["-la","-v"]
-     * @returns {string}
+     * @returns {ExecResult}
      */
     runCommand(deployment, namespace, command, args) {
         return _ek.execInContainer(deployment, namespace, command, args);

@@ -26,7 +26,12 @@ easykube
     .kustomize()
     .waitForDeployment(deployment, namespace)
 
-// Example commands which creates Temporal namespaces
-// easykube.runCommand(deployment,namespace,"tctl",["--ns", "namespace-a n re"])
-// easykube.runCommand(deployment,namespace,"tctl",["--ns", "namespace-b re"])
+easykube.runCommand(deployment, namespace,"tctl",["--ns", "namespace-a", "n" ,"re"])
+    .onSuccess((r)=>{console.info(r)})
+    .onFail((e)=>{console.warn(e)})
+
+
+easykube.runCommand(deployment,namespace,"tctl",["--ns", "namespace-b", "n" ,"re"])
+    .onSuccess((r)=>{console.info(r)})
+    .onFail((e)=>{console.warn(e)})
 
