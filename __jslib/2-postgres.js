@@ -27,29 +27,45 @@ class Postgres {
                                      from pg_database
                                      where datname = '${database}'`, "-U", "postgres"];
 
-        const exists = easykube.runCommand(this.deployment, this.namespace, cmd, args);
+        easykube.runCommand(this.deployment, this.namespace, cmd, args)
+            .onSuccess((scc) => {
+                if (scc != null && scc.trimEnd() === "1" && force === false) {
+                    console.warn(`Database ${database} already exists, will not drop-create (unless forced by script)`);
+                } else {
+                    const argArray = [
+                        ["-c", `drop database if exists ${database} with (FORCE)`, "-U", "postgres"],
+                        ["-c", `drop user if exists ${database}`, "-U", "postgres"],
+                        ["-c", `create user ${database} with superuser password '${database}'`, "-U", "postgres"],
+                        ["-c", `create database ${database} with owner '${database}'`, "-U", "postgres"],
+                    ];
 
-        if (exists != null && exists.trimEnd() === "1" && force === false) {
-            console.warn(`Database ${database} already exists, will not drop-create (unless forced by script)`);
-        } else {
-            const argArray = [
-                ["-c", `drop database if exists ${database} with (FORCE)`, "-U", "postgres"],
-                ["-c", `drop user if exists ${database}`, "-U", "postgres"],
-                ["-c", `create user ${database} with superuser password '${database}'`, "-U", "postgres"],
-                ["-c", `create database ${database} with owner '${database}'`, "-U", "postgres"],
-            ];
+                    argArray.forEach((cmd) => {
+                        easykube.runCommand(this.deployment, this.namespace, "psql", arguments)
+                            .onSuccess((r) => {
+                                console.info(r)
+                            })
+                            .onFail((e) => {
+                                console.error(e)
+                            })
+                    });
 
-            argArray.forEach((cmd) => console.info(easykube.runCommand(this.deployment, this.namespace, "psql", arguments)));
-
-            if (schema != null) {
-                schema.forEach((s) => console.info(
-                    easykube.runCommand("postgres", "default", "psql", [
-                        "-c", `create schema ${s}`, "-d", database, "-U", database
-                    ])));
-            }
-        }
-
-        return this;
+                    if (schema != null) {
+                        schema.forEach((s) => {
+                            easykube.runCommand("postgres", "default", "psql", [
+                                "-c", `create schema ${s}`, "-d", database, "-U", database
+                            ]).onSuccess((r) => {
+                                console.info(r)
+                            }).onFail((e) => {
+                                console.error(e)
+                            })
+                        })
+                    }
+                }
+            })
+            .onFail((e) => {
+                console.error(e)
+            })
+        return this
     }
 
     /**
@@ -74,17 +90,6 @@ class Postgres {
         const out = easykube.runCommand(this.deployment, this.namespace, cmd, args);
         console.info(out)
 
-        return this;
-    }
-
-    /**
-     * Applies a SQL file found in Git to a target database
-     * @param {string} repo repository name (including server path)
-     * @param {string} path path within the repository to the file you wish to apply
-     * @param {string} target the target database (must exist beforehand)
-     * @returns {Postgres}
-     */
-    runGitScript(repo, path, target) {
         return this;
     }
 }

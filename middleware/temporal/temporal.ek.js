@@ -1,11 +1,11 @@
 let configuration = {
     "description": "An opensource workflow engine",
-    "dependsOn" : [ "postgres", "ingress" ],
-    "extraPorts" : [
+    "dependsOn": ["postgres", "ingress"],
+    "extraPorts": [
         {
-            "hostPort" : 7233,
-            "nodePort" : 30950,
-            "protocol" : "TCP"
+            "hostPort": 7233,
+            "nodePort": 30950,
+            "protocol": "TCP"
         }
     ]
 }
@@ -20,13 +20,25 @@ const images = new Map([
     ["temporalio/ui:2.19.0", "localhost:5001/temporalio/ui:2.19.0"]
 ])
 
-
 easykube
     .preload(images)
     .kustomize()
     .waitForDeployment(deployment, namespace)
 
-// Example commands which creates Temporal namespaces
-// easykube.runCommand(deployment,namespace,"tctl",["--ns", "namespace-a n re"])
-// easykube.runCommand(deployment,namespace,"tctl",["--ns", "namespace-b re"])
+function createTemporalNamespace(name) {
 
+    easykube.runCommand(deployment, namespace, "tctl", ["--ns", name, "n", "re"])
+        .onSuccess((r) => {
+            console.info(r)
+        })
+        .onFail((e) => {
+            if (msg.contains("Namespace already exists")) {
+                console.info("Namespace already registered")
+            } else {
+                console.error(msg)
+            }
+        })
+}
+
+createTemporalNamespace("namespace-a")
+createTemporalNamespace("namespace-b")
