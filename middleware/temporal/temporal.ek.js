@@ -27,7 +27,7 @@ easykube
 
 function createTemporalNamespace(name) {
 
-    easykube.runCommand(deployment, namespace, "tctl", ["--ns", name, "n", "re"])
+    easykube.runCommand(deployment, namespace, "temporal", ["operator", "-n", "create", name])
         .onSuccess((r) => {
             console.info(r)
         })
