@@ -447,13 +447,13 @@ spec:
       securityContext:
         runAsNonRoot: true
       containers:
-      - image: "localhost:5001/docker.elastic.co/eck/eck-operator:2.16.0"
+      - image: "registry.localtest.me:5001/docker.elastic.co/eck/eck-operator:2.16.0"
         imagePullPolicy: IfNotPresent
         name: manager
         args:
         - "manager"
         - "--config=/conf/eck.yaml"
-        - "--container-registry=localhost:5001"
+        - "--container-registry=registry.localtest.me:5001"
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:

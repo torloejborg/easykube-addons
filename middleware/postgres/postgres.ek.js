@@ -16,7 +16,7 @@ let deployment = "postgres"
 
 // This is a special postgres server which comes with a machine learning extension - used by the immich addon
 const images= new Map([
-    [ "ghcr.io/tensorchord/vchord-postgres:pg17-v0.3.0", "localhost:5001/postgres:x"]
+    [ "ghcr.io/tensorchord/vchord-postgres:pg17-v0.3.0", "registry.localtest.me:5001/postgres:x"]
 ])
 
 easykube

@@ -8,7 +8,7 @@
 ## @param global.storageClass global storage class override
 ## @param global.hostAliases global hostAliases which will be added to the pod's hosts files
 global:
-  imageRegistry: "localhost:5001"
+  imageRegistry: "registry.localtest.me:5001"
   ## E.g.
   ## imagePullSecrets:
   ##   - myRegistryKeySecretName

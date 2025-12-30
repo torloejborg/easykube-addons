@@ -25,7 +25,7 @@ spec:
               value: trust
             - name: PGDATA
               value: /pg-data
-          image: localhost:5001/postgres:x
+          image: registry.localtest.me:5001/postgres:x
           ports:
             - containerPort: 5432
           volumeMounts:

@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: redis-server
-        image: localhost:5001/redis:7.2.1
+        image: registry.localtest.me:5001/redis:7.2.1
         command:
           - "redis-server"
           - "/usr/local/etc/redis/redis.conf"

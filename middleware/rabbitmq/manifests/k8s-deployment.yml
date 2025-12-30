@@ -22,7 +22,7 @@ spec:
               value: admin
             - name: RABBITMQ_PLUGINS
               value: rabbitmq_delayed_message_exchange rabbitmq_management
-          image: 'localhost:5001/bitnami/rabbitmq:4.0.5'
+          image: 'registry.localtest.me:5001/bitnami/rabbitmq:4.0.5'
           imagePullPolicy: IfNotPresent
           name: rabbitmq
           volumeMounts:

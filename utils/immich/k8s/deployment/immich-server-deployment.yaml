@@ -42,7 +42,7 @@ spec:
 #              -h immich-database -p 5432 ; do sleep 2 ; done
       containers:
         - name: immich-server
-          image: "localhost:5001/ghcr.io/immich-app/immich-server:release"
+          image: "registry.localtest.me:5001/ghcr.io/immich-app/immich-server:release"
           imagePullPolicy: Always
           securityContext:
             runAsUser: 0

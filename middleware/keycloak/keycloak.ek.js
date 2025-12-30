@@ -7,7 +7,7 @@ let configuration = {
 }
 
 const images = new Map([
-    ["keycloak/keycloak:22.0.5" , "localhost:5001/keycloak/keycloak:22.0.5"]
+    ["docker.io/keycloak/keycloak:22.0.5" , "registry.localtest.me:5001/keycloak/keycloak:22.0.5"]
 ])
 
 postgres.create("keycloak",[],false)

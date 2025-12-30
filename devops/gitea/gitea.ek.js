@@ -8,10 +8,10 @@ let configuration = {
 }
 
 const images = new Map([
-    ["docker.io/gitea/gitea:1.21.4", "localhost:5001/gitea/gitea:1.21.4"],
-    ["docker.io/gitea/gitea:1.21.4-rootless", "localhost:5001/gitea/gitea:1.21.4-rootless"],
-    ["gitea/act_runner:nightly-dind-rootless", "localhost:5001/gitea/act_runner:nightly-dind-rootless"],
-    ["docker:23.0.6-dind", "localhost:5001/docker:23.0.6-dind"]
+    ["docker.io/gitea/gitea:1.21.4", "registry.localtest.me:5001/gitea/gitea:1.21.4"],
+    ["docker.io/gitea/gitea:1.21.4-rootless", "registry.localtest.me:5001/gitea/gitea:1.21.4-rootless"],
+    ["gitea/act_runner:nightly-dind-rootless", "registry.localtest.me:5001/gitea/act_runner:nightly-dind-rootless"],
+    ["docker:23.0.6-dind", "registry.localtest.me:5001/docker:23.0.6-dind"]
 ])
 
 postgres.create("gitea",null,false);

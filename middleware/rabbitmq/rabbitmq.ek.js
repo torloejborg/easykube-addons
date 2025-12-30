@@ -4,7 +4,7 @@ let configuration = {
 }
 
 const images = new Map([
-    ["docker.io/bitnami/rabbitmq:4.0.5", "localhost:5001/bitnami/rabbitmq:4.0.5"]
+    ["docker.io/bitnami/rabbitmq:4.0.5", "registry.localtest.me:5001/bitnami/rabbitmq:4.0.5"]
 ])
 
 easykube

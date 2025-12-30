@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: pgadmin
-          image: localhost:5001/dpage/pgadmin4:latest
+          image: registry.localtest.me:5001/dpage/pgadmin4:latest
           ports:
             - containerPort: 80
               protocol: TCP

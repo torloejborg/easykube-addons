@@ -8,7 +8,7 @@ class Easykube {
      * The go binary will extract this, and compare it to its own version, if there is a version
      * mismatch, the status command will complain.
      */
-    EASYKUBE_BINARY_COMPAT="~1.2";
+    EASYKUBE_BINARY_COMPAT="~2.0";
 
     /**
      * Creates a new Easykube JavaScript handler. This class is for your IDE's enjoyment.
