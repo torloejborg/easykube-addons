@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: temporal-ui
-          image: registry.localtest.me:5001/temporalio/ui:2.19.0
+          image: registry.localtest.me:5001/temporalio/ui:2.44.0
           ports:
             - containerPort: 8080
           env:

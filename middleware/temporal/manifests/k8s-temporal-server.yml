@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: temporal-server
-          image: registry.localtest.me:5001/temporalio/auto-setup:1.22.1.0
+          image: registry.localtest.me:5001/temporalio/auto-setup:1.29.2
           ports:
             - containerPort: 7233
           imagePullPolicy: IfNotPresent
@@ -26,7 +26,7 @@ spec:
             - name: SKIP_CREATE_DB
               value: "true"
             - name: DB
-              value: postgresql
+              value: postgres12
             - name: DBNAME
               value: temporal
             - name: DB_PORT

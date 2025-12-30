@@ -16,8 +16,8 @@ let namespace = "default"
 postgres.create("temporal")
 
 const images = new Map([
-    ["docker.io/temporalio/auto-setup:1.22.1.0", "registry.localtest.me:5001/temporalio/auto-setup:1.22.1.0"],
-    ["docker.io/temporalio/ui:2.19.0", "registry.localtest.me:5001/temporalio/ui:2.19.0"]
+    ["docker.io/temporalio/auto-setup:1.29.2", "registry.localtest.me:5001/temporalio/auto-setup:1.29.2"],
+    ["docker.io/temporalio/ui:2.44.0", "registry.localtest.me:5001/temporalio/ui:2.44.0"]
 ])
 
 easykube
