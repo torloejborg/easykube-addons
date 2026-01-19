@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
  - manifests/ingress-controller.yaml
  - manifests/default-cert.yaml
+ - manifests/configmap.yaml
