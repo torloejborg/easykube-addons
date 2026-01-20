@@ -4,3 +4,4 @@
 charts
 .helm
 utils/xyz-sandbox
+utils/foo

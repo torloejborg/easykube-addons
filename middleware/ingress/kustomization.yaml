@@ -5,3 +5,8 @@ resources:
  - manifests/ingress-controller.yaml
  - manifests/default-cert.yaml
  - manifests/configmap.yaml
+
+#patches:
+# - path: manifests/rootless.json
+#   target:
+#    kind: Deployment

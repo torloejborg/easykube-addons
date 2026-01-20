@@ -203,6 +203,23 @@ class Easykube {
     exec(command, args) {
         return _ek.exec(command, args);
     }
+
+    /**
+     * Represents the configuration structure
+     * @typedef {Object} EkConfig
+     * @property {string} ConfigurationDir
+     * @property {string} AddonDir
+     * @property {string} PersistenceDir
+     * @property {string} ContainerRuntime
+     */
+
+    /**
+     * Returns the easykube configuration data structure
+     * @returns {EkConfig} the result
+     */
+    config() {
+        return _ek.config();
+    }
 }
 
 const easykube = new Easykube();

@@ -1,0 +1,22 @@
+[
+  {
+  "op" : "replace",
+  "path" : "/spec/template/spec/containers/0/ports/0/hostPort",
+  "value": 8080
+  },
+  {
+    "op" : "replace",
+    "path" : "/spec/template/spec/containers/0/ports/0/containerPort",
+    "value": 80
+  },
+  {
+    "op" : "replace",
+    "path" : "/spec/template/spec/containers/0/ports/1/hostPort",
+    "value": 8443
+  },
+  {
+    "op" : "replace",
+    "path" : "/spec/template/spec/containers/0/ports/1/containerPort",
+    "value": 443
+  }
+]
