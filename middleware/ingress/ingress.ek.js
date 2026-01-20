@@ -3,12 +3,12 @@ let configuration = {
     "extraPorts": [
         {
             "nodePort": 80,
-            "hostPort": 8080,
+            "hostPort": 80,
             "protocol": "TCP"
         },
         {
             "nodePort": 443,
-            "hostPort": 8443,
+            "hostPort": 443,
             "protocol": "TCP"
         }
     ]
