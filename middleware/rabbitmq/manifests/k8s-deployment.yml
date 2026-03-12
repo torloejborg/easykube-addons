@@ -20,16 +20,14 @@ spec:
               value: admin
             - name: RABBITMQ_DEFAULT_PASS
               value: admin
-            - name: RABBITMQ_PLUGINS
-              value: rabbitmq_delayed_message_exchange rabbitmq_management
-          image: 'registry.localtest.me:5001/bitnami/rabbitmq:4.0.5'
+            - name: RABBITMQ_ERL_COOKIE
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq
+                  key: rabbitmq-erlang-cookie
+          image: 'registry.localtest.me:5001/rabbitmq:4.2.3'
           imagePullPolicy: IfNotPresent
           name: rabbitmq
-          volumeMounts:
-            - mountPath: >-
-                /opt/bitnami/rabbitmq/plugins/rabbitmq_delayed_message_exchange-3.9.0.ez
-              name: plugins
-              subPath: rabbitmq_delayed_message_exchange-3.9.0.ez
           ports:
             - containerPort: 4369
               protocol: TCP
@@ -43,9 +41,15 @@ spec:
               protocol: TCP
             - containerPort: 25672
               protocol: TCP
-      restartPolicy: Always
+          volumeMounts:
+            - name: configuration
+              mountPath: /bitnami/rabbitmq/conf
       volumes:
-        - configMap:
-            defaultMode: 420
-            name: rabbitmq-plugins
-          name: plugins
+        - name: configuration
+          configMap:
+            name: rabbitmq-config
+            items:
+              - key: rabbitmq.conf
+                path: rabbitmq.conf
+      restartPolicy: Always
+

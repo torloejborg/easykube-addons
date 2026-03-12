@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: temporal-server
-          image: registry.localtest.me:5001/temporalio/auto-setup:1.29.2
+          image: docker.io/temporalio/auto-setup:1.29.2
           ports:
             - containerPort: 7233
           imagePullPolicy: IfNotPresent

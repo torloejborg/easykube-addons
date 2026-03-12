@@ -3,6 +3,9 @@ kind: Kustomization
 
 resources:
   - manifests/k8s-deployment.yml
-  - manifests/k8s-rabbitmq-plugins.yml
-  - manifests/k8s-service.yml
+#  - manifests/k8s-service-nodeport.yml
+  - manifests/k8s-service-clusterip.yml
   - manifests/k8s-rabbitmq-ingress.yml
+  - manifests/k8s-rabbitmq-configmap.yml
+  - manifests/roles.yml
+  - manifests/secret.yml

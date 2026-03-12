@@ -17,7 +17,7 @@ const images = new Map([
 postgres.create("gitea",null,false);
 
 easykube
-    .preload(images)
+    // .preload(images)
     .kustomize()
     .waitForDeployment("gitea", "default")
 

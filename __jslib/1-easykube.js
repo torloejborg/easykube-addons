@@ -222,6 +222,7 @@ class Easykube {
     }
 }
 
+const localRegistry = "registry.localtest.me:5001";
 const easykube = new Easykube();
 
 // newline at end-of-file is needed
