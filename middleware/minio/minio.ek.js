@@ -9,7 +9,7 @@ let deployment = "minio"
 
 
 const images = new Map([
-    ["docker.io/minio/minio:latest","registry.localtest.me:5001/minio:latest"]
+    ["docker.io/minio/minio:latest",`${registry_host}/minio:latest`]
 ])
 
 easykube

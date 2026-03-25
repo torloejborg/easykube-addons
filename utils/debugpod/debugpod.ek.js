@@ -3,7 +3,7 @@ let configuration = {
 }
 
 const images = new Map([
-    ["docker.io/leodotcloud/swiss-army-knife:latest" , "registry.localtest.me:5001/leodotcloud/swiss-army-knife:latest"]
+    ["docker.io/leodotcloud/swiss-army-knife:latest" , `${registry_host}/leodotcloud/swiss-army-knife:latest`]
 ])
 
 easykube

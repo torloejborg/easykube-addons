@@ -2,7 +2,7 @@
 This is the companion repository for [easykube](https://github.com/torloejborg/easykube) for addons. 
 This repository mainly serves as an example of what a shared developer platform can look like.
 
-Addons here are compatible with easykube 
+Addons here are compatible with easykube 3.0.0
 
 # Anatomy of an addon
 An addon is just a directory with a Kustomization file (or a Helm char) and some kubernetes yaml files.  

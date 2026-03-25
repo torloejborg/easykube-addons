@@ -15,8 +15,8 @@ let configuration = {
 }
 
 const images = new Map([
-        ["registry.k8s.io/ingress-nginx/controller:v1.14.1", "registry.localtest.me:5001/ingress-nginx/controller:v1.14.1"],
-        ["registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.6.5", "registry.localtest.me:5001/ingress-nginx/kube-webhook-certgen:v1.6.5"]
+        ["registry.k8s.io/ingress-nginx/controller:v1.14.1", `${registry_host}/ingress-nginx/controller:v1.14.1`],
+        ["registry.k8s.io/ingress-nginx/kube-webhook-certgen:v1.6.5", `${registry_host}/ingress-nginx/kube-webhook-certgen:v1.6.5`]
 ])
 
 easykube

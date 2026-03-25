@@ -10,7 +10,7 @@ let configuration = {
 }
 
 const images = new Map([
-    ["docker.io/redis:7.2.1", "registry.localtest.me:5001/redis:7.2.1"]
+    ["docker.io/redis:7.2.1", `${registry_host}/redis:7.2.1`]
 ])
 
 easykube
