@@ -17,7 +17,7 @@ class Easykube {
     constructor() {
     }
 
-    /**
+    /*
      * Runs the kustomize tool, saves the rendered manifests into a .out file, and applies it with kubectl
      * @returns {Easykube}
      */
@@ -26,7 +26,7 @@ class Easykube {
         return this;
     }
 
-    /**
+    /*
      * Renders a Helm chart to .out, remember to apply the result
      * @param {string} chart relative path to the chart directory
      * @param {string} values the values file to use
@@ -70,6 +70,19 @@ class Easykube {
         _ek.preload(images);
         return this;
     }
+
+    /**
+     * Use the skopeo tool to copy an image from source to destination, typically to the local registry
+     * this saves bandwidth, and will make subsequent installations faster, unlike preload, source images
+     * are not stored in your docker context, thus saving disk-space
+     * @param {Map<string, string>} images
+     * @returns {Easykube}
+     */
+    skopeoPreLoad(images) {
+        _ek.skopeoPreload(images);
+        return this;
+    }
+
 
     /**
      * Runs a command in a container

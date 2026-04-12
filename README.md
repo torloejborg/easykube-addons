@@ -1,4 +1,4 @@
-# Easykube addons
+# Easykube example addons
 This is the companion repository for [easykube](https://github.com/torloejborg/easykube) for addons. 
 This repository mainly serves as an example of what a shared developer platform can look like.
 
@@ -16,12 +16,12 @@ Every addon file (*.ek.js) is a small javascript, with a limited set of commands
 
 ```javascript
 let configuration = {
-    "dependsOn": ["datastash", "redis"],
-    "extraPorts" : [
+    dependsOn: ["datastash", "redis"],
+    extraPorts : [
         {
-            "hostPort" : 5432,
-            "nodePort" : 30432,
-            "protocol" : "TCP"
+            hostPort : 5432,
+            nodePort : 30432,
+            protocol : "TCP"
         }
     ]
 }

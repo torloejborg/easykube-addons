@@ -1,5 +1,5 @@
 let configuration = {
-    "description": "An opensource workflow engine",
+    "description": "An opensource code-first workflow engine",
     "dependsOn": ["postgres", "ingress"],
     "extraPorts": [
         {
@@ -17,7 +17,7 @@ postgres.create("temporal")
 
 const images = new Map([
     ["docker.io/temporalio/auto-setup:1.29.2", `${registry_host}/temporalio/auto-setup:1.29.2`],
-    ["docker.io/temporalio/ui:2.44.0", `"${registry_host}/temporalio/ui:2.44.0`]
+    ["docker.io/temporalio/ui:2.44.0", `${registry_host}/temporalio/ui:2.44.0`]
 ])
 
 easykube
